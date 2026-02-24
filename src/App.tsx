@@ -16,9 +16,14 @@ function App() {
   }, []);
 
   function createTodo() {
-    client.models.Todo.create({ content: window.prompt("Todo content") });
+    var note = window.prompt("Todo content") || "";
+    if (note === "") {
+      window.alert("neispravan unos ! Ponisteno dodavanje ");
+    } else {
+      client.models.Todo.create({ content: note, isDone:false});
+      //client.models.Todo.create({ content: note});
+    }
   }
-
   function deleteTodo(id: string) {
     client.models.Todo.delete({ id })
   }
