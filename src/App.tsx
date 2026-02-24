@@ -20,14 +20,34 @@ function App() {
     if (note === "") {
       window.alert("neispravan unos ! Ponisteno dodavanje ");
     } else {
-      client.models.Todo.create({ content: note, isDone:false});
+      client.models.Todo.create({ content: note, isDone: false });
       //client.models.Todo.create({ content: note});
     }
   }
   function deleteTodo(id: string) {
     client.models.Todo.delete({ id })
   }
+  async function toggleDone(id: string) {
 
+    try {
+      const upd = {
+        id: id,
+        isDone: true,
+      };
+      const { data, errors } = await client.models.Todo.update(upd);
+      if (errors) {
+        console.error('Update errors:', errors);
+      }
+      if (data) {
+        alert('Todo updated successfully!');
+      }
+    }
+    catch (err) {
+      console.error('Update failed:', err);
+    } finally {
+      console.log("Succesfully done task");
+    }
+  }
   return (
     <main>
       <h1>{user?.signInDetails?.loginId}'s todos</h1>
@@ -36,6 +56,11 @@ function App() {
         {todos.map((todo) => (
           <li key={todo.id}>
             <div >
+              <input style={{ float: "left" }} type="checkbox"
+                checked={todo.isDone}
+                disabled={todo.isDone}
+                onChange={() => toggleDone(todo.id)}
+              />
               <div style={{ float: "left" }}>{todo.content}</div>
               <button style={{ float: "right", padding: "2px 10px", background: "darkred" }} onClick={() => deleteTodo(todo.id)} >X</button>
             </div>
