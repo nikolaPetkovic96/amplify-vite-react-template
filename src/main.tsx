@@ -6,19 +6,17 @@ import { Amplify } from "aws-amplify";
 import outputs from "../amplify_outputs.json";
 import '@aws-amplify/ui-react/styles.css';
 import { Authenticator } from "@aws-amplify/ui-react";
-import ProfilePicture from "./ProfilePicture.tsx";
+import ProfilePicture2 from "./ProfilePicture2.tsx";
 
 Amplify.configure(outputs);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  
+
   <React.StrictMode>
     <Authenticator>
-      
-          <ProfilePicture />
+      <ProfilePicture2 />
+      <App />
 
-        <App />    
-     
     </Authenticator>
   </React.StrictMode>
 );

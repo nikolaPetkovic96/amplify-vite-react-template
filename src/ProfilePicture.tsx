@@ -78,8 +78,8 @@ export default function ProfilePicture() {
   }
 
   return (
-    <div style={{ maxWidth: '380px', margin: '2rem auto', textAlign: 'center' }}>
-      <h2>Your Profile Picture</h2>
+     <div style={{ maxWidth: '380px', margin: '2rem auto', textAlign: 'center' }}>
+       <h2>Your Profile Picture</h2>
 
       {avatarUrl ? (
         <img
@@ -108,8 +108,9 @@ export default function ProfilePicture() {
             fontSize: '1.1rem',
             color: '#777',
           }}
+          
         >
-          No picture yet
+         <p    > No picture yet</p> 
         </div>
       )}
 
@@ -126,13 +127,13 @@ export default function ProfilePicture() {
         {error && <p style={{ color: 'crimson' }}>{error}</p>}
 
         {/* Optional: refresh button if URL expires */}
-        <button
+        {/* <button
           onClick={loadAvatar}
           disabled={uploading}
           style={{ marginLeft: '1rem', padding: '0.5rem 1rem' }}
         >
           Refresh
-        </button>
+        </button> */}
       </div>
     </div>
   );
